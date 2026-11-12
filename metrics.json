@@ -1,0 +1,127 @@
+{
+  "best_model": "Random Forest (baseline)",
+  "comparison": [
+    {
+      "model": "Random Forest (baseline)",
+      "accuracy": 0.2489411266412537,
+      "precision_weighted": 0.488322172482871,
+      "recall_weighted": 0.2489411266412537,
+      "f1_weighted": 0.2974557048005261,
+      "f1_macro": 0.17857239636546718
+    },
+    {
+      "model": "Random Forest (tuned)",
+      "accuracy": 0.26143583227446,
+      "precision_weighted": 0.4848637141579002,
+      "recall_weighted": 0.26143583227446,
+      "f1_weighted": 0.25997876618612437,
+      "f1_macro": 0.16274723163503813
+    },
+    {
+      "model": "Logistic Regression",
+      "accuracy": 0.22935196950444728,
+      "precision_weighted": 0.41508946228454113,
+      "recall_weighted": 0.22935196950444728,
+      "f1_weighted": 0.22669313489093562,
+      "f1_macro": 0.14947252100912728
+    }
+  ],
+  "classification_report": {
+    "Availability": {
+      "precision": 0.22903225806451613,
+      "recall": 0.5220588235294118,
+      "f1-score": 0.3183856502242152,
+      "support": 272.0
+    },
+    "Availability (including rural call completion)": {
+      "precision": 0.11851851851851852,
+      "recall": 0.28444444444444444,
+      "f1-score": 0.16732026143790849,
+      "support": 450.0
+    },
+    "Billing": {
+      "precision": 0.5867768595041323,
+      "recall": 0.13387806411062225,
+      "f1-score": 0.218014329580348,
+      "support": 3182.0
+    },
+    "Cramming (unauthorized charges on your phone bill)": {
+      "precision": 0.032753326509723645,
+      "recall": 0.26337448559670784,
+      "f1-score": 0.05826126536185708,
+      "support": 243.0
+    },
+    "Equipment": {
+      "precision": 0.11182108626198083,
+      "recall": 0.09615384615384616,
+      "f1-score": 0.103397341211226,
+      "support": 728.0
+    },
+    "Number Portability (keeping your number if you change providers)": {
+      "precision": 0.04621212121212121,
+      "recall": 0.18769230769230769,
+      "f1-score": 0.07416413373860183,
+      "support": 325.0
+    },
+    "Privacy": {
+      "precision": 0.02435897435897436,
+      "recall": 0.12337662337662338,
+      "f1-score": 0.04068522483940043,
+      "support": 154.0
+    },
+    "Unwanted Calls": {
+      "precision": 0.61633875106929,
+      "recall": 0.35232273838630807,
+      "f1-score": 0.4483509645301805,
+      "support": 4090.0
+    },
+    "accuracy": 0.2489411266412537,
+    "macro avg": {
+      "precision": 0.22072648693740712,
+      "recall": 0.24541266666128395,
+      "f1-score": 0.17857239636546718,
+      "support": 9444.0
+    },
+    "weighted avg": {
+      "precision": 0.488322172482871,
+      "recall": 0.2489411266412537,
+      "f1-score": 0.2974557048005261,
+      "support": 9444.0
+    }
+  },
+  "labels": [
+    "Availability",
+    "Availability (including rural call completion)",
+    "Billing",
+    "Cramming (unauthorized charges on your phone bill)",
+    "Equipment",
+    "Number Portability (keeping your number if you change providers)",
+    "Privacy",
+    "Unwanted Calls"
+  ],
+  "feature_names": [
+    "issue_type",
+    "method",
+    "state",
+    "month",
+    "year",
+    "day_of_week"
+  ],
+  "dataset_rows_after_cleaning": 47220,
+  "training_rows": 37776,
+  "testing_rows": 9444,
+  "class_distribution": {
+    "Unwanted Calls": 20449,
+    "Billing": 15910,
+    "Equipment": 3642,
+    "Availability (including rural call completion)": 2251,
+    "Number Portability (keeping your number if you change providers)": 1626,
+    "Availability": 1360,
+    "Cramming (unauthorized charges on your phone bill)": 1214,
+    "Privacy": 768
+  },
+  "random_state": 42,
+  "test_size": 0.2,
+  "target": "target_issue",
+  "note": "Scores describe this filtered FCC complaint sample and are not a guarantee of real-world performance."
+}
