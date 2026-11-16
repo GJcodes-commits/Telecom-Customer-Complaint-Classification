@@ -34,12 +34,13 @@ div.stButton > button { border-radius: 10px; font-weight: 700; }
 """, unsafe_allow_html=True)
 
 
+
 def load_assets():
     MODEL_URL = (
-    "https://github.com/GJcodes-commits/"
-    "Telecom-Customer-Complaint-Classification/"
-    "releases/download/v1.0/artifacts_bundle.zip"
-)
+        "https://github.com/GJcodes-commits/"
+        "Telecom-Customer-Complaint-Classification/"
+        "releases/download/v1.0/artifacts_bundle.zip"
+    )
 
     if not MODEL_PATH.exists() or not METRICS_PATH.exists():
         try:
@@ -70,12 +71,14 @@ def load_assets():
                         else METRICS_PATH
                     )
 
-                  # Create artifacts directory if it doesn't exist
-target.parent.mkdir(parents=True, exist_ok=True)
+                    # Create artifacts folder before saving
+                    target.parent.mkdir(
+                        parents=True,
+                        exist_ok=True
+                    )
 
-# Extract the file
-with archive.open(matches[0]) as source:
-    target.write_bytes(source.read())
+                    with archive.open(matches[0]) as source:
+                        target.write_bytes(source.read())
 
         except Exception as e:
             st.error(f"Could not download trained model: {e}")
@@ -88,6 +91,7 @@ with archive.open(matches[0]) as source:
 
 
 model, metrics = load_assets()
+
 
 
 with st.sidebar:
