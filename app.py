@@ -70,8 +70,12 @@ def load_assets():
                         else METRICS_PATH
                     )
 
-                    with archive.open(matches[0]) as source:
-                        target.write_bytes(source.read())
+                  # Create artifacts directory if it doesn't exist
+target.parent.mkdir(parents=True, exist_ok=True)
+
+# Extract the file
+with archive.open(matches[0]) as source:
+    target.write_bytes(source.read())
 
         except Exception as e:
             st.error(f"Could not download trained model: {e}")
