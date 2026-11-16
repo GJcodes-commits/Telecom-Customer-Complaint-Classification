@@ -1,8 +1,12 @@
+import io
+import zipfile
+import requests
 from pathlib import Path
 import json
 import joblib
 import pandas as pd
 import streamlit as st
+
 
 st.set_page_config(page_title="Telecom Complaint Intelligence", page_icon="📡", layout="wide")
 
@@ -29,12 +33,57 @@ div.stButton > button { border-radius: 10px; font-weight: 700; }
 </style>
 """, unsafe_allow_html=True)
 
+
 def load_assets():
+    MODEL_URL = (
+        "https://github.com/GJcodes-commits/Telecom-Customer-Complaint-Classification /"
+        "releases/download/v1.0/artifacts_bundle.zip"
+    )
+
     if not MODEL_PATH.exists() or not METRICS_PATH.exists():
-        return None, None
-    return joblib.load(MODEL_PATH), json.loads(METRICS_PATH.read_text())
+        try:
+            response = requests.get(MODEL_URL, timeout=300)
+            response.raise_for_status()
+
+            with zipfile.ZipFile(io.BytesIO(response.content)) as archive:
+
+                required_files = [
+                    "telecom_complaint_model.joblib",
+                    "metrics.json"
+                ]
+
+                for filename in required_files:
+                    matches = [
+                        name for name in archive.namelist()
+                        if name.endswith("/" + filename)
+                        or name == filename
+                    ]
+
+                    if not matches:
+                        raise FileNotFoundError(
+                            f"{filename} not found in ZIP"
+                        )
+
+                    target = (
+                        MODEL_PATH if filename.endswith(".joblib")
+                        else METRICS_PATH
+                    )
+
+                    with archive.open(matches[0]) as source:
+                        target.write_bytes(source.read())
+
+        except Exception as e:
+            st.error(f"Could not download trained model: {e}")
+            return None, None
+
+    return (
+        joblib.load(MODEL_PATH),
+        json.loads(METRICS_PATH.read_text())
+    )
+
 
 model, metrics = load_assets()
+
 
 with st.sidebar:
     st.markdown("## 📡 Telecom AI")
