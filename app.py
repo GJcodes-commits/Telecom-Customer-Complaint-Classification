@@ -36,9 +36,10 @@ div.stButton > button { border-radius: 10px; font-weight: 700; }
 
 def load_assets():
     MODEL_URL = (
-        "https://github.com/GJcodes-commits/Telecom-Customer-Complaint-Classification /"
-        "releases/download/v1.0/artifacts_bundle.zip"
-    )
+    "https://github.com/GJcodes-commits/"
+    "Telecom-Customer-Complaint-Classification/"
+    "releases/download/v1.0/artifacts_bundle.zip"
+)
 
     if not MODEL_PATH.exists() or not METRICS_PATH.exists():
         try:
